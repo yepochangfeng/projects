@@ -10,11 +10,15 @@
 #import "picCell.h"
 #import "DetailCell.h"
 #import "DetailViewController.h"
-@interface ListViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate>
+@interface ListViewController ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+
+#define screenWidth [UIScreen mainScreen].bounds.size.width
+#define screenHeight [UIScreen mainScreen].bounds.size.height
+
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *categoryCollectView;
-
+@property (weak, nonatomic) IBOutlet UIScrollView *detailScrollView;
 @end
 
 @implementation ListViewController
@@ -22,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    
     self.categoryCollectView.backgroundColor = [UIColor whiteColor];
     self.categoryCollectView.showsHorizontalScrollIndicator = NO;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
@@ -33,7 +38,27 @@
     [self.categoryCollectView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
     [self.categoryCollectView registerClass:[UICollectionElementKindSectionFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
    
-    NSLog(@"contentsize=%f",self.categoryCollectView.contentSize.width);
+    self.detailScrollView.contentSize = CGSizeMake(screenWidth * 4, screenHeight - 104);
+    self.detailScrollView.delaysContentTouches = NO;
+    self.detailScrollView.canCancelContentTouches = YES;
+    for (int i = 0; i < 4; i++) {
+        UITableView *detailTableView = [[UITableView alloc]initWithFrame:CGRectMake(i * screenWidth, 0, screenWidth, screenHeight - 104) style:UITableViewStylePlain];
+        detailTableView.delegate = self;
+        detailTableView.dataSource = self;
+        [self.detailScrollView addSubview:detailTableView];
+    }
+
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([scrollView isKindOfClass:[UITableView class]]) {
+        NSLog(@"----列表------");
+        self.detailScrollView.scrollEnabled = NO;
+    }else
+    {
+        NSLog(@"-----滚动视图-----");
+        self.detailScrollView.scrollEnabled = YES;
+    }
 }
 #pragma -mark collectionView代理方法
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,7 +94,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 9;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

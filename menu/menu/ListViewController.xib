@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewController">
             <connections>
                 <outlet property="categoryCollectView" destination="nJD-zc-qGE" id="bN1-Cq-0k2"/>
+                <outlet property="detailScrollView" destination="Qqb-HO-pG9" id="RAp-d0-iM0"/>
                 <outlet property="titleLabel" destination="XIO-ux-git" id="fTh-S3-M71"/>
                 <outlet property="topView" destination="eSY-nc-Wrn" id="bdW-Gu-Vp8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -54,29 +55,27 @@
                         <outlet property="delegate" destination="-1" id="L3G-HW-31a"/>
                     </connections>
                 </collectionView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBe-Te-t56">
-                    <rect key="frame" x="0.0" y="104" width="600" height="496"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" alwaysBounceVertical="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqb-HO-pG9">
+                    <rect key="frame" x="0.0" y="105" width="600" height="495"/>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="xMv-GF-hUp"/>
-                        <outlet property="delegate" destination="-1" id="fFr-AH-yt7"/>
+                        <outlet property="delegate" destination="-1" id="wXp-Xj-WEA"/>
                     </connections>
-                </tableView>
+                </scrollView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="HBe-Te-t56" secondAttribute="trailing" id="1VI-wK-eMU"/>
                 <constraint firstItem="nJD-zc-qGE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2lY-4c-V29"/>
+                <constraint firstItem="Qqb-HO-pG9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="81f-Bk-gtb"/>
                 <constraint firstItem="eSY-nc-Wrn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DQS-Ol-2AX"/>
                 <constraint firstAttribute="trailing" secondItem="nJD-zc-qGE" secondAttribute="trailing" id="GSp-JA-2YA"/>
-                <constraint firstItem="HBe-Te-t56" firstAttribute="top" secondItem="nJD-zc-qGE" secondAttribute="bottom" id="Hfh-je-dNi"/>
-                <constraint firstItem="HBe-Te-t56" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="N3f-gV-zZK"/>
+                <constraint firstItem="Qqb-HO-pG9" firstAttribute="top" secondItem="nJD-zc-qGE" secondAttribute="bottom" constant="1" id="LOR-qR-oGx"/>
                 <constraint firstItem="eSY-nc-Wrn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Q0X-i2-ViQ"/>
-                <constraint firstAttribute="bottom" secondItem="HBe-Te-t56" secondAttribute="bottom" id="bwi-NB-Olm"/>
                 <constraint firstItem="nJD-zc-qGE" firstAttribute="top" secondItem="eSY-nc-Wrn" secondAttribute="bottom" id="gaL-fe-Ayv"/>
                 <constraint firstAttribute="trailing" secondItem="eSY-nc-Wrn" secondAttribute="trailing" id="mLI-PU-QfU"/>
+                <constraint firstAttribute="bottom" secondItem="Qqb-HO-pG9" secondAttribute="bottom" id="qMt-jc-Vsf"/>
+                <constraint firstAttribute="trailing" secondItem="Qqb-HO-pG9" secondAttribute="trailing" id="xZj-Po-TAS"/>
             </constraints>
             <point key="canvasLocation" x="166" y="297"/>
         </view>
