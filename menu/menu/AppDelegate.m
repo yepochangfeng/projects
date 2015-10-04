@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ListViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,7 +16,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
+    UITabBarController *rootTBC = [[UITabBarController alloc]init];
+    ListViewController *firstList = [[ListViewController alloc]init];
+    UINavigationController *firstNav = [[UINavigationController alloc]initWithRootViewController:firstList];
+    rootTBC.viewControllers = @[firstNav];
+    self.window.rootViewController = rootTBC;
     return YES;
 }
 
